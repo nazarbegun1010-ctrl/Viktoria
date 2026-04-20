@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Для Вики 💖</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #ffb6c1;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Падающие сердечки */
+.heart-fall {
+  position: absolute;
+  top: -10px;
+  color: rgba(255, 0, 80, 0.7);
+  font-size: 18px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+/* Центр — большое сердце */
+.container {
+  position: relative;
+}
+
+svg {
+  width: 320px;
+  height: 320px;
+  animation: pulse 1.2s infinite;
+  filter: drop-shadow(0 0 15px rgba(255,0,80,0.6));
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+text {
+  font-family: Arial, sans-serif;
+  font-size: 34px;
+  fill: white;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<svg viewBox="0 0 200 200">
+  <path d="M100 180
+           C 20 120, 20 60, 60 60
+           C 80 60, 90 80, 100 90
+           C 110 80, 120 60, 140 60
+           C 180 60, 180 120, 100 180 Z"
+        fill="#ff2d55" />
+
+  <text x="100" y="110">Вика</text>
+</svg>
+</div>
+
+<script>
+// падающие сердечки
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart-fall";
+  heart.innerText = "❤";
+
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.fontSize = (10 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 8000);
+}
+
+setInterval(createHeart, 200);
+</script>
+
+</body>
+</html>
